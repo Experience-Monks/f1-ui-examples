@@ -1,0 +1,40 @@
+{
+  "name": "f1-ui-examples",
+  "version": "1.0.0",
+  "description": "Reusable f1 ui examples using f1 ui library.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Brendan Neufeld",
+    "email": "brendanjneufeld@gmail.com",
+    "url": "https://github.com/BrenanNeufeld"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "^4.2.2"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "f1,",
+    "reusable,",
+    "buttons,",
+    "button,",
+    "ui,",
+    "user-interface,",
+    "dom,",
+    "canvas,",
+    "tween,",
+    "animation,",
+    "stateful"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jam3/f1-ui-examples.git"
+  },
+  "homepage": "https://github.com/Jam3/f1-ui-examples",
+  "bugs": {
+    "url": "https://github.com/Jam3/f1-ui-examples/issues"
+  }
+}
