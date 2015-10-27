@@ -1,7 +1,7 @@
 {
   "name": "f1-ui-examples",
   "version": "1.0.0",
-  "description": "Reusable f1 ui examples using f1 ui library.",
+  "description": "Reusable ui examples using f1.",
   "main": "index.js",
   "license": "MIT",
   "author": {

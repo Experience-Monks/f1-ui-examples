@@ -2,7 +2,7 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Reusable f1 ui examples using f1 ui library.
+Reusable ui examples using f1.
 
 ## Usage
 
