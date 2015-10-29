@@ -309,32 +309,36 @@ bg.ui = f1(SlotMachine({
             }
         ]
     }, {
-    btnWidth: 1,
-    btnHeight: 1,
+    btnWidth: bg.offsetWidth,
+    btnHeight: bg.offsetHeight,
 
-    bgOffColor: [],
-    bgOverColor: [],
-    bgDownColor: [],
+    bgOffColor: [46, 204, 114],
+    bgOverColor: [36, 182, 98],
+    bgDownColor: [36, 182, 98],
 
-    borderThickness: 3,
-    borderOffColor: [],
-    borderOverColor: [],
-    borderDownColor: [],
+    borderOffColor: [256, 256, 256],
+    borderOverColor: [256, 256, 256],
+    borderDownColor: [23, 149, 76],
 
     iconPosition: 'right',
     iconDirection: 'left',
-    iconWidth: 1,
-    iconHeight: 1,
-    iconOffColor: [],
-    iconOverColor: [],
-    iconDownColor: [],
+    iconOffPosition: getIconOffPosition(targs),
+    iconOverPosition: getIconOverPosition(targs),
 
-    textWidth: 1,
-    textHeight: 1,
-    textOffColor: [],
-    textOverColor: [],
-    textDownColor: []
+    iconWidth: arrow.offsetWidth,
+    iconHeight: arrow.offsetHeight,
+    iconOffColor: [256, 256, 256],
+    iconOverColor: [256, 256, 256],
+    iconDownColor: [23, 149, 76],
 
+    textWidth: text.offsetWidth,
+    textHeight: text.offsetHeight,
+    textOffColor: [256, 256, 256],
+    textOverColor: [256, 256, 256],
+    textDownColor: [23, 149, 76],
+
+    defaultDuration:.3,
+    defaultEase: eases.expoInOut
 
     })).
     parsers(f1Dom).
@@ -343,7 +347,20 @@ bg.ui = f1(SlotMachine({
     }).
     init('init').
     go('idle');
-
+/*down: {
+ bg: {
+ backgroundColor: [36, 182, 98],
+ borderColor: [23, 149, 76],
+ alpha: 1
+ },
+ text: {
+ color: [23, 149, 76]
+ },
+ icon: {
+ position: getIconOverPosition(targs),
+ color: [23, 149, 76]
+ }
+ }*/
 
 function getBtnBg(opts){
 
