@@ -235,6 +235,14 @@ bg.ui = f1(SlotMachine({
             },
             {
                 from: 'down',
+                to: 'over',
+                animation: {
+                    duration:.3,
+                    ease: eases.ExpoInOut
+                }
+            },
+            {
+                from: 'down',
                 to: 'off',
                 animation: {
                     duration:.3,
@@ -301,8 +309,32 @@ bg.ui = f1(SlotMachine({
             }
         ]
     }, {
-    position: 'right',
-    direction: 'left'
+    btnWidth: 1,
+    btnHeight: 1,
+
+    bgOffColor: [],
+    bgOverColor: [],
+    bgDownColor: [],
+
+    borderThickness: 3,
+    borderOffColor: [],
+    borderOverColor: [],
+    borderDownColor: [],
+
+    iconPosition: 'right',
+    iconDirection: 'left',
+    iconWidth: 1,
+    iconHeight: 1,
+    iconOffColor: [],
+    iconOverColor: [],
+    iconDownColor: [],
+
+    textWidth: 1,
+    textHeight: 1,
+    textOffColor: [],
+    textOverColor: [],
+    textDownColor: []
+
 
     })).
     parsers(f1Dom).
@@ -380,25 +412,13 @@ function getIconOverPosition(targs, opts){
             direction: 'left'
         };
 
-
     var edgeOfText = targs.text.offsetLeft + targs.text.offsetWidth;
     var availSpace = targs.bg.offsetWidth - edgeOfText - borderWidth;
 
     var left = edgeOfText + ((availSpace - targs.icon.offsetWidth) * .5);
     var top = (targs.bg.offsetHeight - targs.icon.offsetHeight) * .5;
 
-    console.log('edgeOfText: ',edgeOfText);
-    console.log('bg.width: ',targs.bg.offsetWidth);
-    console.log('bg.height: ',targs.bg.offsetHeight);
-    console.log('icon.width: ',targs.icon.offsetWidth);
-    console.log('icon.height: ',targs.icon.offsetHeight);
-    console.log('availSpace: ',availSpace);
-    console.log('left: ',left);
-    console.log('top: ',top);
-
     return [Math.floor(left), Math.floor(top), 0];
-
-
 }
 
 function getIconOffPosition(targs, opts){
@@ -409,7 +429,6 @@ function getIconOffPosition(targs, opts){
             position: 'right',
             direction: 'left'
         };
-
 
     var left = targs.bg.offsetWidth * 1.3;
     var top = (targs.bg.offsetHeight - targs.icon.offsetHeight) * .5;
@@ -442,7 +461,7 @@ function onDown(e){
 }
 
 function onUp(e){
-    console.log('from: ',e.currentTarget.ui.state,', to: up');
+    console.log('from: ',e.currentTarget.ui.state,', to: over');
     //console.log('onUp, target: ', e.target);
-    e.currentTarget.ui.go('up');
+    e.currentTarget.ui.go('over');
 }
