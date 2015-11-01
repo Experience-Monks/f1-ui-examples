@@ -235,6 +235,14 @@ bg.ui = f1(SlotMachine({
             },
             {
                 from: 'down',
+                to: 'over',
+                animation: {
+                    duration:.3,
+                    ease: eases.ExpoInOut
+                }
+            },
+            {
+                from: 'down',
                 to: 'off',
                 animation: {
                     duration:.3,
@@ -301,8 +309,36 @@ bg.ui = f1(SlotMachine({
             }
         ]
     }, {
-    position: 'right',
-    direction: 'left'
+    btnWidth: bg.offsetWidth,
+    btnHeight: bg.offsetHeight,
+
+    bgOffColor: [46, 204, 114],
+    bgOverColor: [36, 182, 98],
+    bgDownColor: [36, 182, 98],
+
+    borderOffColor: [256, 256, 256],
+    borderOverColor: [256, 256, 256],
+    borderDownColor: [23, 149, 76],
+
+    iconPosition: 'right',
+    iconDirection: 'left',
+    iconOffPosition: getIconOffPosition(targs),
+    iconOverPosition: getIconOverPosition(targs),
+
+    iconWidth: arrow.offsetWidth,
+    iconHeight: arrow.offsetHeight,
+    iconOffColor: [256, 256, 256],
+    iconOverColor: [256, 256, 256],
+    iconDownColor: [23, 149, 76],
+
+    textWidth: text.offsetWidth,
+    textHeight: text.offsetHeight,
+    textOffColor: [256, 256, 256],
+    textOverColor: [256, 256, 256],
+    textDownColor: [23, 149, 76],
+
+    defaultDuration:.3,
+    defaultEase: eases.expoInOut
 
     })).
     parsers(f1Dom).
@@ -311,7 +347,20 @@ bg.ui = f1(SlotMachine({
     }).
     init('init').
     go('idle');
-
+/*down: {
+ bg: {
+ backgroundColor: [36, 182, 98],
+ borderColor: [23, 149, 76],
+ alpha: 1
+ },
+ text: {
+ color: [23, 149, 76]
+ },
+ icon: {
+ position: getIconOverPosition(targs),
+ color: [23, 149, 76]
+ }
+ }*/
 
 function getBtnBg(opts){
 
@@ -380,25 +429,13 @@ function getIconOverPosition(targs, opts){
             direction: 'left'
         };
 
-
     var edgeOfText = targs.text.offsetLeft + targs.text.offsetWidth;
     var availSpace = targs.bg.offsetWidth - edgeOfText - borderWidth;
 
     var left = edgeOfText + ((availSpace - targs.icon.offsetWidth) * .5);
     var top = (targs.bg.offsetHeight - targs.icon.offsetHeight) * .5;
 
-    console.log('edgeOfText: ',edgeOfText);
-    console.log('bg.width: ',targs.bg.offsetWidth);
-    console.log('bg.height: ',targs.bg.offsetHeight);
-    console.log('icon.width: ',targs.icon.offsetWidth);
-    console.log('icon.height: ',targs.icon.offsetHeight);
-    console.log('availSpace: ',availSpace);
-    console.log('left: ',left);
-    console.log('top: ',top);
-
     return [Math.floor(left), Math.floor(top), 0];
-
-
 }
 
 function getIconOffPosition(targs, opts){
@@ -409,7 +446,6 @@ function getIconOffPosition(targs, opts){
             position: 'right',
             direction: 'left'
         };
-
 
     var left = targs.bg.offsetWidth * 1.3;
     var top = (targs.bg.offsetHeight - targs.icon.offsetHeight) * .5;
@@ -442,7 +478,7 @@ function onDown(e){
 }
 
 function onUp(e){
-    console.log('from: ',e.currentTarget.ui.state,', to: up');
+    console.log('from: ',e.currentTarget.ui.state,', to: over');
     //console.log('onUp, target: ', e.target);
-    e.currentTarget.ui.go('up');
+    e.currentTarget.ui.go('over');
 }

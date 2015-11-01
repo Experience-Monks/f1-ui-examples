@@ -36,6 +36,7 @@ bg.appendChild(arrow);
 
 var targs = {
     bg: bg,
+    border: bg,
     text: text,
     icon: arrow
 };
@@ -44,40 +45,13 @@ var targs = {
 bg.ui = f1(SlotMachine({
         targets: targs,
         states: {
-            init: {
+            /*over: {
+                border: {
+                    borderColor: [256, 256, 256]
+                },
                 bg: {
-                    backgroundColor: [46, 204, 114],
-                    borderColor: [256, 256, 256],
-                    alpha: 0
-                },
-                text: {
-                    color: [256, 256, 256]
-                },
-                icon: {
-                    position: getIconOffPosition(targs),
-                    color: [256, 256, 256]
-                }
-            },
-            idle: {
-                bg: {
-                    backgroundColor: [46, 204, 114],
-                    borderColor: [256, 256, 256],
-                    alpha: 1
-                },
-                text: {
-                    color: [256, 256, 256]
-                },
-                icon: {
-                    position: getIconOffPosition(targs),
-                    color: [256, 256, 256]
-
-                }
-            },
-            over: {
-                bg: {
-                    backgroundColor: [36, 182, 98],
-                    borderColor: [256, 256, 256],
-                    alpha: 1
+                    //backgroundColor: [0, 0, 256]
+                    backgroundColor: [36, 182, 98]
                 },
                 text: {
                     color: [256, 256, 256]
@@ -88,10 +62,11 @@ bg.ui = f1(SlotMachine({
                 }
             },
             down: {
+                border: {
+                    borderColor: [23, 149, 76]
+                },
                 bg: {
-                    backgroundColor: [36, 182, 98],
-                    borderColor: [23, 149, 76],
-                    alpha: 1
+                    backgroundColor: [36, 182, 98]
                 },
                 text: {
                     color: [23, 149, 76]
@@ -101,39 +76,12 @@ bg.ui = f1(SlotMachine({
                     color: [23, 149, 76]
                 }
             },
-            up: {
+            selected: {
+                border: {
+                    borderColor: [256, 256, 256]
+                },
                 bg: {
-                    backgroundColor: [36, 182, 98],
-                    borderColor: [256, 256, 256],
-                    alpha: 1
-                },
-                text: {
-                    color: [256, 256, 256]
-                },
-                icon: {
-                    position: getIconOverPosition(targs),
-                    color: [256, 256, 256]
-                }
-            },
-            off: {
-                bg: {
-                    backgroundColor: [46, 204, 114],
-                    borderColor: [256, 256, 256],
-                    alpha: 1
-                },
-                text: {
-                    color: [256, 256, 256, 1]
-                },
-                icon: {
-                    position: getIconOffPosition(targs),
-                    color: [256, 256, 256]
-                }
-            },
-            out: {
-                bg: {
-                    backgroundColor: [46, 204, 114],
-                    borderColor: [256, 256, 256],
-                    alpha: 0
+                    backgroundColor: [46, 204, 114]
                 },
                 text: {
                     color: [256, 256, 256]
@@ -142,39 +90,13 @@ bg.ui = f1(SlotMachine({
                     position: getIconOffPosition(targs),
                     color: [256, 256, 256]
                 }
-            }
+            }*/
         },
         transitions: [
-            // from: 'init' transitions.
-            // typically 'init' would only go to 'idle',
-            // but there may be instances where the pointer is already over ('over' state) and the mouse btn is pressed as well ('down' state).
-            {
-                from: 'init',
-                to: 'idle',
-                animation: {
-                    duration:.5
-                }
-            },
-            {
-                from: 'init',
-                to: 'over',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'init',
-                to: 'down',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            // from: 'idle' transitions.
-            // 'idle' can only go to 'over' state.
-            {
-                from: 'idle',
+            // from: 'off' transitions.
+            // 'off' can go to 'over'.
+            /*{
+                from: 'off',
                 to: 'over',
                 animation: {
                     duration:.3,
@@ -182,7 +104,7 @@ bg.ui = f1(SlotMachine({
                 }
             },
             // from: 'over' transitions.
-            // 'over' can go to 'down', 'off' & 'out'(animateOut), but not 'init', 'idle' and 'up'
+            // 'over' can go to 'down' & 'off'.
             {
                 from: 'over',
                 to: 'down',
@@ -194,45 +116,13 @@ bg.ui = f1(SlotMachine({
             {
                 from: 'over',
                 to: 'off',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'over',
-                to: 'out',
-                animation: {
-                    duration:.3
-                }
-            },
-            // from: 'off' transitions.
-            // 'off' can go to 'over' & 'out'(animateOut), but not 'init', 'idle', 'up'
-            {
-                from: 'off',
-                to: 'init',
-                animation: {
-                    duration:.3
-                }
-            },
-            {
-                from: 'off',
-                to: 'over',
                 animation: {
                     duration:.3,
                     ease: eases.ExpoInOut
                 }
             },
             // from: 'down' transitions.
-            // 'down' can go to 'up', 'off' & 'out'(animateOut), but not 'init', 'idle', 'over'
-            {
-                from: 'down',
-                to: 'up',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
+            // 'down' can go to 'over' & 'off'.
             {
                 from: 'down',
                 to: 'over',
@@ -248,67 +138,21 @@ bg.ui = f1(SlotMachine({
                     duration:.3,
                     ease: eases.ExpoInOut
                 }
-            },{
-                from: 'down',
-                to: 'out',
-                animation: {
-                    duration:.3
-                }
-            },
-            // from: 'up' transitions.
-            // 'up' can go to 'down', 'off' & 'out'(animateOut), but not 'init', 'idle', 'over'
-            {
-                from: 'up',
-                to: 'down',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
             },
             {
-                from: 'up',
+                from: 'selected',
                 to: 'off',
                 animation: {
-                    duration:.3,
+                    duration:.2,
                     ease: eases.ExpoInOut
                 }
-            },
-            {
-                from: 'up',
-                to: 'off',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            // from: 'out' transitions.
-            // usually out doesn't go anywhere but on the off chance the target object is not destroyed
-            // and is just 'hidden' then it can go to the same states as 'init'
-            {
-                from: 'out',
-                to: 'idle',
-                animation: {
-                    duration:.5
-                }
-            },
-            {
-                from: 'out',
-                to: 'over',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'out',
-                to: 'down',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            }
+            }*/
         ]
     }, {
+    /*
+
+    states: [],
+
     btnWidth: bg.offsetWidth,
     btnHeight: bg.offsetHeight,
 
@@ -324,6 +168,7 @@ bg.ui = f1(SlotMachine({
     iconDirection: 'left',
     iconOffPosition: getIconOffPosition(targs),
     iconOverPosition: getIconOverPosition(targs),
+    iconDownPosition: getIconOverPosition(targs),
 
     iconWidth: arrow.offsetWidth,
     iconHeight: arrow.offsetHeight,
@@ -333,34 +178,22 @@ bg.ui = f1(SlotMachine({
 
     textWidth: text.offsetWidth,
     textHeight: text.offsetHeight,
+    textPosition: getBtnTextPosition(text),
     textOffColor: [256, 256, 256],
     textOverColor: [256, 256, 256],
     textDownColor: [23, 149, 76],
 
     defaultDuration:.3,
-    defaultEase: eases.expoInOut
+    defaultEase: eases.expoInOut*/
 
     })).
     parsers(f1Dom).
     parsers({
         update: [require('./lib/borderColor')]
     }).
-    init('init').
-    go('idle');
-/*down: {
- bg: {
- backgroundColor: [36, 182, 98],
- borderColor: [23, 149, 76],
- alpha: 1
- },
- text: {
- color: [23, 149, 76]
- },
- icon: {
- position: getIconOverPosition(targs),
- color: [23, 149, 76]
- }
- }*/
+    init('off');
+
+//console.log(getBtnTextPosition(text));
 
 function getBtnBg(opts){
 
@@ -411,13 +244,17 @@ function getBtnText(opts){
 
     opts = opts || {};
 
-    var el = document.createElement('span');
+    var el = document.createElement('div');
     el.style.fontSize = (opts.fontSize || fontSize) + 'px';
     el.style.color = opts.textColor || textColor;
     el.innerHTML = opts.copy || copy;
     el.setAttribute('id','text');
 
     return el;
+}
+
+function getBtnTextPosition(txt){
+    return [txt.offsetLeft, txt.offsetTop, 0]
 }
 
 function getIconOverPosition(targs, opts){
@@ -456,29 +293,36 @@ function getIconOffPosition(targs, opts){
 
 function onClick(e){
     //console.log('onClick, target: ', e.target);
+    //console.log('from: ',e.target.ui.state,', to: off');
+    /*if(e.target.ui.state === 'selected'){
+        e.currentTarget.ui.go('over');
+    }else{
+        e.currentTarget.ui.go('over');
+    }*/
 }
 
+var isSelected = false;
+
 function onOff(e){
-    console.log('from: ',e.target.ui.state,', to: off');
-    //console.log('onOff, target: ', e.target);
-    e.currentTarget.ui.go('off');
+
+    if(!isSelected) e.currentTarget.ui.go('off');
 }
 
 function onOver(e){
-    console.log('from: ',e.target.ui.state,', to: over');
-    //console.log('onOver, target: ', e.target);
-    e.currentTarget.ui.go('over');
+
+    if(!isSelected) e.currentTarget.ui.go('over');
 }
 
 function onDown(e){
-    e.stopPropagation();
-    console.log('from: ',e.currentTarget.ui.state,', to: down');
-    //console.log('onDown, target: ', e.currentTarget);
+
+    //isSelected = !isSelected;
     e.currentTarget.ui.go('down');
 }
 
 function onUp(e){
-    console.log('from: ',e.currentTarget.ui.state,', to: over');
-    //console.log('onUp, target: ', e.target);
-    e.currentTarget.ui.go('over');
+    //var state = (e.currentTarget.ui.state !== 'selected') ? 'selected' : 'over';
+    //console.log('onUp(), from: ',e.currentTarget.ui.state,', to: ',state);
+
+    if(!isSelected) e.currentTarget.ui.go('over');
+
 }
