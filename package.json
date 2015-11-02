@@ -24,7 +24,8 @@
   },
   "scripts": {
     "test": "node test.js",
-    "start": "budo index.js --live"
+    "start": "budo example-simple-button --live",
+    "simple-button": "budo example-simple-button --live"
   },
   "keywords": [
     "f1,",

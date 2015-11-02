@@ -3,7 +3,7 @@
 var f1 = require('f1');
 var f1Dom = require('f1-dom');
 var eases = require('eases');
-var SlotMachine = require('./f1-slot-machine');
+var SlotMachine = require('../lib/f1-simple-button');
 
 // button bg defaults
 var bgColor = '#2ecc71';
@@ -42,10 +42,8 @@ var targs = {
     icon: arrow
 };
 
-//console.log('background color: ',bg.getComputedStyle().backgroundColor);
 
-var styl = window.getComputedStyle( bg ,null).getPropertyValue('width');
-console.log('style: ',styl);
+//var styl = window.getComputedStyle( bg ,null).getPropertyValue('width');
 
 // initialize f1 instance for ui element.
 bg.ui = f1(SlotMachine({
@@ -64,36 +62,6 @@ bg.ui = f1(SlotMachine({
             //    },
             //    icon: {
             //        position: getIconOverPosition(targs),
-            //        color: [256, 256, 256]
-            //    }
-            //}
-            //down: {
-            //    border: {
-            //        borderColor: [23, 149, 76]
-            //    },
-            //    bg: {
-            //        backgroundColor: [36, 182, 98]
-            //    },
-            //    text: {
-            //        color: [23, 149, 76]
-            //    },
-            //    icon: {
-            //        position: getIconOverPosition(targs),
-            //        color: [23, 149, 76]
-            //    }
-            //},
-            //selected: {
-            //    border: {
-            //        borderColor: [256, 256, 256]
-            //    },
-            //    bg: {
-            //        backgroundColor: [46, 204, 114]
-            //    },
-            //    text: {
-            //        color: [256, 256, 256]
-            //    },
-            //    icon: {
-            //        position: getIconOffPosition(targs),
             //        color: [256, 256, 256]
             //    }
             //}
@@ -116,50 +84,6 @@ bg.ui = f1(SlotMachine({
             //            duration: 3
             //        }
             //    }
-            //},
-            //// from: 'over' transitions.
-            //// 'over' can go to 'down' & 'off'.
-            //{
-            //    from: 'over',
-            //    to: 'down',
-            //    animation: {
-            //        duration:.3,
-            //        ease: eases.ExpoInOut
-            //    }
-            //},
-            //{
-            //    from: 'over',
-            //    to: 'off',
-            //    animation: {
-            //        duration:.3,
-            //        ease: eases.ExpoInOut
-            //    }
-            //},
-            //// from: 'down' transitions.
-            //// 'down' can go to 'over' & 'off'.
-            //{
-            //    from: 'down',
-            //    to: 'over',
-            //    animation: {
-            //        duration:.3,
-            //        ease: eases.ExpoInOut
-            //    }
-            //},
-            //{
-            //    from: 'down',
-            //    to: 'off',
-            //    animation: {
-            //        duration:.3,
-            //        ease: eases.ExpoInOut
-            //    }
-            //},
-            //{
-            //    from: 'selected',
-            //    to: 'off',
-            //    animation: {
-            //        duration:.2,
-            //        ease: eases.ExpoInOut
-            //    }
             //}
         ]
     }, {
@@ -175,7 +99,7 @@ bg.ui = f1(SlotMachine({
 
     downBorderBorderColor: [23, 149, 76],
     downIconColor: [23, 149, 76],
-    downTextColor: [23, 149, 76],
+    downTextColor: [23, 149, 76]
 
     //defaultDuration: 3
 
@@ -183,7 +107,7 @@ bg.ui = f1(SlotMachine({
     })).
     parsers(f1Dom).
     parsers({
-        update: [require('./lib/borderColor')]
+        update: [require('../lib/borderColor')]
     }).
     init('off');
 
