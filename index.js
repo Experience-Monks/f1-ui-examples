@@ -35,156 +35,150 @@ var arrow = getBtnArrow();
 bg.appendChild(arrow);
 
 var targs = {
+    btn: bg,
     bg: bg,
     border: bg,
     text: text,
     icon: arrow
 };
 
+//console.log('background color: ',bg.getComputedStyle().backgroundColor);
+
+var styl = window.getComputedStyle( bg ,null).getPropertyValue('width');
+console.log('style: ',styl);
+
 // initialize f1 instance for ui element.
 bg.ui = f1(SlotMachine({
         targets: targs,
         states: {
-            /*over: {
-                border: {
-                    borderColor: [256, 256, 256]
-                },
-                bg: {
-                    //backgroundColor: [0, 0, 256]
-                    backgroundColor: [36, 182, 98]
-                },
-                text: {
-                    color: [256, 256, 256]
-                },
-                icon: {
-                    position: getIconOverPosition(targs),
-                    color: [256, 256, 256]
-                }
-            },
-            down: {
-                border: {
-                    borderColor: [23, 149, 76]
-                },
-                bg: {
-                    backgroundColor: [36, 182, 98]
-                },
-                text: {
-                    color: [23, 149, 76]
-                },
-                icon: {
-                    position: getIconOverPosition(targs),
-                    color: [23, 149, 76]
-                }
-            },
-            selected: {
-                border: {
-                    borderColor: [256, 256, 256]
-                },
-                bg: {
-                    backgroundColor: [46, 204, 114]
-                },
-                text: {
-                    color: [256, 256, 256]
-                },
-                icon: {
-                    position: getIconOffPosition(targs),
-                    color: [256, 256, 256]
-                }
-            }*/
+            //over: {
+            //    border: {
+            //        borderColor: [256, 256, 256]
+            //    },
+            //    bg: {
+            //        backgroundColor: [0, 0, 256]
+            //        //backgroundColor: [36, 182, 98]
+            //    },
+            //    text: {
+            //        color: [256, 256, 256]
+            //    },
+            //    icon: {
+            //        position: getIconOverPosition(targs),
+            //        color: [256, 256, 256]
+            //    }
+            //}
+            //down: {
+            //    border: {
+            //        borderColor: [23, 149, 76]
+            //    },
+            //    bg: {
+            //        backgroundColor: [36, 182, 98]
+            //    },
+            //    text: {
+            //        color: [23, 149, 76]
+            //    },
+            //    icon: {
+            //        position: getIconOverPosition(targs),
+            //        color: [23, 149, 76]
+            //    }
+            //},
+            //selected: {
+            //    border: {
+            //        borderColor: [256, 256, 256]
+            //    },
+            //    bg: {
+            //        backgroundColor: [46, 204, 114]
+            //    },
+            //    text: {
+            //        color: [256, 256, 256]
+            //    },
+            //    icon: {
+            //        position: getIconOffPosition(targs),
+            //        color: [256, 256, 256]
+            //    }
+            //}
         },
         transitions: [
             // from: 'off' transitions.
             // 'off' can go to 'over'.
-            /*{
-                from: 'off',
-                to: 'over',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            // from: 'over' transitions.
-            // 'over' can go to 'down' & 'off'.
-            {
-                from: 'over',
-                to: 'down',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'over',
-                to: 'off',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            // from: 'down' transitions.
-            // 'down' can go to 'over' & 'off'.
-            {
-                from: 'down',
-                to: 'over',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'down',
-                to: 'off',
-                animation: {
-                    duration:.3,
-                    ease: eases.ExpoInOut
-                }
-            },
-            {
-                from: 'selected',
-                to: 'off',
-                animation: {
-                    duration:.2,
-                    ease: eases.ExpoInOut
-                }
-            }*/
+            //{
+            //    from: 'off',
+            //    to: 'over',
+            //    animation: {
+            //        duration:.3,
+            //        ease: eases.ExpoInOut,
+            //        bg:{
+            //            backgroundColor: {
+            //                duration:.4
+            //            }
+            //        },
+            //        icon: {
+            //            duration: 3
+            //        }
+            //    }
+            //},
+            //// from: 'over' transitions.
+            //// 'over' can go to 'down' & 'off'.
+            //{
+            //    from: 'over',
+            //    to: 'down',
+            //    animation: {
+            //        duration:.3,
+            //        ease: eases.ExpoInOut
+            //    }
+            //},
+            //{
+            //    from: 'over',
+            //    to: 'off',
+            //    animation: {
+            //        duration:.3,
+            //        ease: eases.ExpoInOut
+            //    }
+            //},
+            //// from: 'down' transitions.
+            //// 'down' can go to 'over' & 'off'.
+            //{
+            //    from: 'down',
+            //    to: 'over',
+            //    animation: {
+            //        duration:.3,
+            //        ease: eases.ExpoInOut
+            //    }
+            //},
+            //{
+            //    from: 'down',
+            //    to: 'off',
+            //    animation: {
+            //        duration:.3,
+            //        ease: eases.ExpoInOut
+            //    }
+            //},
+            //{
+            //    from: 'selected',
+            //    to: 'off',
+            //    animation: {
+            //        duration:.2,
+            //        ease: eases.ExpoInOut
+            //    }
+            //}
         ]
     }, {
-    /*
 
-    states: [],
+    offBgBackgroundColor: [46, 204, 114],
+    offBorderBorderColor: [256, 256, 256],
+    offIconPosition: [324, 27, 0],
+    offIconColor: [256, 256, 256],
+    offTextColor: [256, 256, 256],
 
-    btnWidth: bg.offsetWidth,
-    btnHeight: bg.offsetHeight,
+    overBgBackgroundColor: [36, 182, 98],
+    overIconPosition: [188, 27, 0],
 
-    bgOffColor: [46, 204, 114],
-    bgOverColor: [36, 182, 98],
-    bgDownColor: [36, 182, 98],
+    downBorderBorderColor: [23, 149, 76],
+    downIconColor: [23, 149, 76],
+    downTextColor: [23, 149, 76],
 
-    borderOffColor: [256, 256, 256],
-    borderOverColor: [256, 256, 256],
-    borderDownColor: [23, 149, 76],
+    //defaultDuration: 3
 
-    iconPosition: 'right',
-    iconDirection: 'left',
-    iconOffPosition: getIconOffPosition(targs),
-    iconOverPosition: getIconOverPosition(targs),
-    iconDownPosition: getIconOverPosition(targs),
-
-    iconWidth: arrow.offsetWidth,
-    iconHeight: arrow.offsetHeight,
-    iconOffColor: [256, 256, 256],
-    iconOverColor: [256, 256, 256],
-    iconDownColor: [23, 149, 76],
-
-    textWidth: text.offsetWidth,
-    textHeight: text.offsetHeight,
-    textPosition: getBtnTextPosition(text),
-    textOffColor: [256, 256, 256],
-    textOverColor: [256, 256, 256],
-    textDownColor: [23, 149, 76],
-
-    defaultDuration:.3,
-    defaultEase: eases.expoInOut*/
 
     })).
     parsers(f1Dom).
@@ -218,6 +212,8 @@ function getBtnBg(opts){
     el.addEventListener('mouseleave', onOff);
     el.addEventListener('mousedown', onDown);
     el.addEventListener('mouseup', onUp);
+    /*el.addEventListener('touchstart', onTouchstart);
+    el.addEventListener('touchend', onTouchend);*/
     el.addEventListener('click', onClick);
 
     return el;
@@ -233,8 +229,13 @@ function getBtnArrow(opts){
     el.style.color = opts.arrowColor || arrowColor;
     el.style.width = '33px';
     el.style.height = '16px';
+    el.style.position = 'absolute';
     el.innerHTML = iconCode;
     el.style.lineHeight = '.5em';
+    el.style.top = '50%';
+    //el.style.marginTop = '-8px';
+    //el.style.left = '130%';
+    el.style.left = '76%';
     el.setAttribute('id','arrow');
 
     return el;
@@ -305,16 +306,22 @@ var isSelected = false;
 
 function onOff(e){
 
-    if(!isSelected) e.currentTarget.ui.go('off');
+    if(!isSelected){
+        console.log('onOff(), from: ',e.currentTarget.ui.state,', to: ','off');
+        e.currentTarget.ui.go('off');
+    }
 }
 
 function onOver(e){
 
-    if(!isSelected) e.currentTarget.ui.go('over');
+    if(!isSelected){
+        console.log('onOver(), from: ',e.currentTarget.ui.state,', to: ','over');
+        e.currentTarget.ui.go('over');
+    }
 }
 
 function onDown(e){
-
+    console.log('onDown(), from: ',e.currentTarget.ui.state,', to: ','down');
     //isSelected = !isSelected;
     e.currentTarget.ui.go('down');
 }
@@ -323,6 +330,25 @@ function onUp(e){
     //var state = (e.currentTarget.ui.state !== 'selected') ? 'selected' : 'over';
     //console.log('onUp(), from: ',e.currentTarget.ui.state,', to: ',state);
 
-    if(!isSelected) e.currentTarget.ui.go('over');
+    if(!isSelected){
+        console.log('onUp(), from: ',e.currentTarget.ui.state,', to: ','over');
+        e.currentTarget.ui.go('over');
+    }
+
+}
+
+function onTouchstart(e){
+    //var state = (e.currentTarget.ui.state !== 'selected') ? 'selected' : 'over';
+    //console.log('onUp(), from: ',e.currentTarget.ui.state,', to: ',state);
+    console.log('onTouchstart(), from: ',e.currentTarget.ui.state,', to: ','touchstart');
+    e.currentTarget.ui.go('touchstart');
+
+}
+
+function onTouchend(e){
+    //var state = (e.currentTarget.ui.state !== 'selected') ? 'selected' : 'over';
+    //console.log('onUp(), from: ',e.currentTarget.ui.state,', to: ',state);
+    console.log('onTouchend(), from: ',e.currentTarget.ui.state,', to: ','touchend');
+    e.currentTarget.ui.go('touchend');
 
 }
